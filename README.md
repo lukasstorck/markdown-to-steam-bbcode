@@ -23,7 +23,13 @@ It is JavaScript based and runs in your browser, so your data never leaves your 
 | <pre>\| Name   \| Age \|<br>\| ------ \| --- \|<br>\| John   \| 65  \|<br>\| Gitte  \| 40  \|<br>\| Sussie \| 19  \|<pre> | <pre>[table]<br>  [tr]<br>    [th]Name[/th]<br>    [th]Age[/th]<br>  [/tr]<br>  [tr]<br>    [td]John[/td]<br>    [td]65[/td]<br>  [/tr]<br>  [tr]<br>    [td]Gitte[/td]<br>    [td]40[/td]<br>  [/tr]<br>  [tr]<br>    [td]Sussie[/td]<br>    [td]19[/td]<br>  [/tr]<br>[/table] | Basic table layout                                                   |
 
 
-## Unsupported BBCode Tags
+## Unsupported Markdown Features
+- text block continuation
+  - markdown only makes paragraphs after an empty line
+  - unless explicitly requested with double space at the end of a line
+
+
+## Unsupported BBCode Features
 
 - `[u] Underlined text [/u]`
 - `[spoiler] Spoiler text [/spoiler]`
