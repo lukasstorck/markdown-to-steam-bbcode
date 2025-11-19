@@ -67,6 +67,16 @@ const testCases = [
     ].join("\n"),
   },
   {
+    name: "Formatted text with concatenation",
+    input: ["**Bold**", "*Italic*", "_Italic_", "~~Strike~~"].join("\n"),
+    expected: [
+      "[b]Bold[/b]",
+      "[i]Italic[/i]",
+      "[i]Italic[/i]",
+      "[strike]Strike[/strike]",
+    ].join("\n"),
+  },
+  {
     name: "Headings",
     input: ["# Heading 1", "## Heading 2", "### Heading 3", ""].join("\n"),
     expected: [
@@ -77,14 +87,24 @@ const testCases = [
     ].join("\n"),
   },
   {
-    name: "Bold and Italic",
-    input: ["**Bold**", "*Italic*", "_Italic_", "~~Strike~~"].join("\n"),
-    expected: [
-      "[b]Bold[/b]",
-      "[i]Italic[/i]",
-      "[i]Italic[/i]",
-      "[strike]Strike[/strike]",
-    ].join("\n"),
+    name: "Bold",
+    input: ["**Bold**"].join("\n"),
+    expected: ["[b]Bold[/b]", ""].join("\n"),
+  },
+  {
+    name: "Italic (*)",
+    input: ["*Italic*"].join("\n"),
+    expected: ["[i]Italic[/i]", ""].join("\n"),
+  },
+  {
+    name: "Italic (_)",
+    input: ["_Italic_"].join("\n"),
+    expected: ["[i]Italic[/i]", ""].join("\n"),
+  },
+  {
+    name: "Strikethrough",
+    input: ["~~Strikethrough~~"].join("\n"),
+    expected: ["[strike]Strikethrough[/strike]", ""].join("\n"),
   },
   {
     name: "Links",
