@@ -68,12 +68,13 @@ const testCases = [
   },
   {
     name: "Formatted text with concatenation",
-    input: ["**Bold**", "*Italic*", "_Italic_", "~~Strike~~"].join("\n"),
+    input: ["**Bold**  ", "*Italic*  ", "_Italic_  ", "~~Strike~~"].join("\n"),
     expected: [
       "[b]Bold[/b]",
       "[i]Italic[/i]",
       "[i]Italic[/i]",
       "[strike]Strike[/strike]",
+      "",
     ].join("\n"),
   },
   {
@@ -151,6 +152,7 @@ const testCases = [
       "  [*] Dash item",
       "  [*] Plus item",
       "[/list]",
+      "",
     ].join("\n"),
   },
   {
@@ -172,6 +174,7 @@ const testCases = [
       "  [/olist]",
       "  [*] Step 2",
       "[/olist]",
+      "",
     ].join("\n"),
   },
   {
@@ -202,6 +205,7 @@ const testCases = [
       "    [td]19[/td]",
       "  [/tr]",
       "[/table]",
+      "",
     ].join("\n"),
   },
 ];
