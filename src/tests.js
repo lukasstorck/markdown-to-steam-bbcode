@@ -1,6 +1,72 @@
 // Sample Markdown test cases
 const testCases = [
   {
+    name: "Textblock",
+    input: [
+      "This is a textblock of multiple lines.",
+      "All lines should be concatenated.",
+    ].join("\n"),
+    expected: [
+      "This is a textblock of multiple lines. All lines should be concatenated.",
+      "",
+    ].join("\n"),
+  },
+  {
+    name: "Textblock + Newline",
+    input: [
+      "This is a textblock of multiple lines.",
+      "All lines should be concatenated.",
+      "",
+    ].join("\n"),
+    expected: [
+      "This is a textblock of multiple lines. All lines should be concatenated.",
+      "",
+    ].join("\n"),
+  },
+  {
+    name: "Textblock + Forced Newline",
+    input: [
+      "This is a textblock of multiple lines.  ",
+      "This line should not be concatenated.",
+    ].join("\n"),
+    expected: [
+      "This is a textblock of multiple lines.",
+      "This line should not be concatenated.",
+      "",
+    ].join("\n"),
+  },
+  {
+    name: "Multiple Newline",
+    input: ["This is a textblock", "", "", "Another textlblock"].join("\n"),
+    expected: ["This is a textblock", "", "Another textblock", ""].join("\n"),
+  },
+  {
+    name: "Trim trailing whitespaces",
+    input: [
+      "This is text with one space. ",
+      "",
+      "This is text with two spaces  ",
+      "",
+      "This is text with three spaces   ",
+      "",
+      "This is text with four spaces    ",
+      " ",
+      "that was an emtpy line with one space",
+    ].join("\n"),
+    expected: [
+      "This is text with one space.",
+      "",
+      "This is text with two spaces",
+      "",
+      "This is text with three spaces",
+      "",
+      "This is text with four spaces",
+      "",
+      "that was an emtpy line with one space",
+      "",
+    ].join("\n"),
+  },
+  {
     name: "Headings",
     input: ["# Heading 1", "## Heading 2", "### Heading 3", ""].join("\n"),
     expected: [
