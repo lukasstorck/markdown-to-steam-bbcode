@@ -35,6 +35,12 @@
                 z-index: 1000;
             }
         }
+
+        .test-mode pre {
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -53,6 +59,22 @@
             </div>
         </div>
     </div>
+    <div id="testContainer" class="container mt-4" style="display:none;">
+        <h2 class="mb-4">Running Tests...</h2>
+
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Test Name</th>
+                    <th>Markdown Input</th>
+                    <th>Expected Output</th>
+                    <th>Generated Output</th>
+                </tr>
+            </thead>
+            <tbody id="testTableBody"></tbody>
+        </table>
+    </div>
+
 
     <!-- View Source Button -->
     <a href="https://github.com/lukasstorck/markdown-to-steam-bbcode" target="_blank"

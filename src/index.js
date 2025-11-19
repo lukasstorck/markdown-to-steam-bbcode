@@ -1,11 +1,22 @@
 const input = document.getElementById("markdownInput");
 const output = document.getElementById("bbcodeOutput");
 
-input.addEventListener("input", () => {
-  const markdown = input.value;
-  const bbcode = markdownToBBCode(markdown);
-  output.value = bbcode;
-});
+// Detect /?test mode
+const params = new URLSearchParams(window.location.search);
+const isTestMode = params.has("test");
+
+if (isTestMode) {
+  // Load tests.js dynamically
+  const script = document.createElement("script");
+  script.src = "tests.js";
+  document.body.appendChild(script);
+} else {
+  input.addEventListener("input", () => {
+    const markdown = input.value;
+    const bbcode = markdownToBBCode(markdown);
+    output.value = bbcode;
+  });
+}
 
 function markdownToBBCode(md) {
   // Ensure a trailing newline in markdown
