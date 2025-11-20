@@ -19,6 +19,13 @@ if (isTestMode) {
 }
 
 function markdownToBBCode(markdownText) {
+  // add newlines in markdown to cleanly separate markdown blocks
+  markdownText = markdownText.replace(/^(#.*)$/gm, "\n$1\n");
+  markdownText = markdownText.replace(/^\-\-\-$/gm, "\n---\n");
+  markdownText = markdownText.replace(/^\*\*\*$/gm, "\n***\n");
+  markdownText = markdownText.replace(/^(```[\s\S]+?```)$/gm, "\n$1\n");
+  markdownText = markdownText.replace(/^(\|[\s\S]+?\|)$/gm, "\n$1\n");
+
   // detect markdown blocks
   const matches = markdownText.match(/(?:[^\n]+(?:\n|$))+/gm);
   const output = matches.map(processMarkdownBlock).join("\n\n") + "\n";
