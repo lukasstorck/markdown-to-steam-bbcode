@@ -18,9 +18,16 @@ if (isTestMode) {
   });
 }
 
-function markdownToBBCode(md) {
+function markdownToBBCode(markdownText) {
+  // detect markdown blocks
+  const matches = markdownText.match(/(?:[^\n]+(?:\n|$))+/gm);
+  const output = matches.map(processMarkdownBlock).join("\n\n") + "\n";
+  return output;
+}
+
+function processMarkdownBlock(text) {
   // Ensure a trailing newline in markdown
-  let text = md.endsWith("\n") ? md : md + "\n";
+  text = text + "\n";
 
   // HEADINGS
   text = text.replace(/^### (.*)$/gm, "[h3]$1[/h3]");
