@@ -24,9 +24,7 @@ It is JavaScript based and runs in your browser, so your data never leaves your 
 
 
 ## Unsupported Markdown Features
-- text block continuation
-  - markdown only makes paragraphs after an empty line
-  - unless explicitly requested with double space at the end of a line
+- Multi level syntax processing, currently e.g. bold text in tables is unsupported
 
 
 ## Unsupported BBCode Features
