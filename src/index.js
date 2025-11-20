@@ -36,11 +36,20 @@ function processMarkdownBlock(text) {
   // Ensure a trailing newline in markdown
   if (!text.endsWith("\n")) text += "\n";
 
+  // process special syntax blocks
   if (text.match(/^\s*#/g)) return processHeading(text).trim();
   if (text.match(/```([\s\S]+?)```/g)) return processCodeBlock(text).trim();
   if (text.match(/^[ \t]*(?:[-+*]|\d+\.)[ \t]+/g))
     return processList(text).trim();
   if (text.match(/^\|/g)) return processTable(text).trim();
+
+  // Remove newlines from continued text blocks (unless two or more space at the end of a line or the next line starts with special markdown characters)
+  text = text.replace(
+    /(?<=\S) ?$\n^[ \t]*(?!(?:(?:[-+*]|(?:\d+\.)) )|[\s#])/gm,
+    " "
+  );
+  // Remove trailing whitespaces
+  text = text.replace(/^(.*?)[^\S\n]*$/gm, "$1");
 
   // HORIZONTAL RULE
   text = text.replace(/^(\-{3,}|\*{3,})$/gm, "[hr][/hr]");

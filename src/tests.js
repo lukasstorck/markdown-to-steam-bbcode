@@ -183,6 +183,7 @@ const testCases = [
       "",
       "[code]multiline",
       "code block[/code]",
+      "",
     ].join("\n"),
   },
   {
