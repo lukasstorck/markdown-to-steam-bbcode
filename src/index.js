@@ -21,8 +21,8 @@ if (isTestMode) {
 function markdownToBBCode(markdownText) {
   // add newlines in markdown to cleanly separate markdown blocks
   markdownText = markdownText.replace(/^(#.*)$/gm, "\n$1\n");
-  markdownText = markdownText.replace(/^\-\-\-$/gm, "\n---\n");
-  markdownText = markdownText.replace(/^\*\*\*$/gm, "\n***\n");
+  markdownText = markdownText.replace(/^\-{3,}$/gm, "\n---\n");
+  markdownText = markdownText.replace(/^\*{3,}$/gm, "\n***\n");
   markdownText = markdownText.replace(/^(```[\s\S]+?```)$/gm, "\n$1\n");
   markdownText = markdownText.replace(/^(\|[\s\S]+?\|)$/gm, "\n$1\n");
 
@@ -48,7 +48,7 @@ function processMarkdownBlock(text) {
   text = text.replace(/~~(.*?)~~/g, "[strike]$1[/strike]");
 
   // HORIZONTAL RULE
-  text = text.replace(/^(\-\-\-|\*\*\*)$/gm, "[hr][/hr]");
+    text = text.replace(/^(\-{3,}|\*{3,})$/gm, "[hr][/hr]");
 
   // LINKS
   text = text.replace(
