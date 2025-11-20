@@ -36,8 +36,8 @@ const testCases = [
     ].join("\n"),
   },
   {
-    name: "Multiple Newline",
-    input: ["This is a textblock", "", "", "Another textlblock"].join("\n"),
+    name: "Multiple Newlines",
+    input: ["This is a textblock", "", "", "Another textblock"].join("\n"),
     expected: ["This is a textblock", "", "Another textblock", ""].join("\n"),
   },
   {
