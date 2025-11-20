@@ -42,10 +42,10 @@ function processMarkdownBlock(text) {
   text = text.replace(/^# (.*)$/gm, "[h1]$1[/h1]");
 
   // BOLD, ITALIC, STRIKETHROUGH
-  text = text.replace(/\*\*(.*?)\*\*/g, "[b]$1[/b]");
-  text = text.replace(/\*(.*?)\*/g, "[i]$1[/i]");
-  text = text.replace(/_(.*?)_/g, "[i]$1[/i]");
-  text = text.replace(/~~(.*?)~~/g, "[strike]$1[/strike]");
+  text = text.replace(/\*\*(.+?)\*\*/g, "[b]$1[/b]");
+  text = text.replace(/\*(.+?)\*/g, "[i]$1[/i]");
+  text = text.replace(/_(.+?)_/g, "[i]$1[/i]");
+  text = text.replace(/~~(.+?)~~/g, "[strike]$1[/strike]");
 
   // HORIZONTAL RULE
     text = text.replace(/^(\-{3,}|\*{3,})$/gm, "[hr][/hr]");
