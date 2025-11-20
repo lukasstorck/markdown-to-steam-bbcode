@@ -34,12 +34,13 @@ function markdownToBBCode(markdownText) {
 
 function processMarkdownBlock(text) {
   // Ensure a trailing newline in markdown
-  text = text + "\n";
+  if (!text.endsWith("\n")) text += "\n";
 
-  // HEADINGS
-  text = text.replace(/^### (.*)$/gm, "[h3]$1[/h3]");
-  text = text.replace(/^## (.*)$/gm, "[h2]$1[/h2]");
-  text = text.replace(/^# (.*)$/gm, "[h1]$1[/h1]");
+  if (text.match(/^\s*#/g)) return processHeading(text).trim();
+  if (text.match(/```([\s\S]+?)```/g)) return processCodeBlock(text).trim();
+  if (text.match(/^[ \t]*(?:[-+*]|\d+\.)[ \t]+/g))
+    return processList(text).trim();
+  if (text.match(/^\|/g)) return processTable(text).trim();
 
   // HORIZONTAL RULE
   text = text.replace(/^(\-{3,}|\*{3,})$/gm, "[hr][/hr]");
@@ -59,26 +60,32 @@ function processMarkdownBlock(text) {
   // BLOCK QUOTES
   text = text.replace(/^> (.*)$/gm, "[quote]$1[/quote]");
 
-  // MULTILINE CODE BLOCKS
-  text = text.replace(/```([\s\S]*?)```/g, (m, code) => {
-    return "[code]" + code.trim() + "[/code]";
-  });
-
   // INLINE CODE
   text = text.replace(/`([^`]+)`/g, "[code]$1[/code]");
 
-  // LISTS
-  text = text.replace(
-    /(?:^[\t ]*(?:(?:[-+*]|(?:\d+\.)|[\t ]+) )(?:[^\n]+)$\n)+/gm,
-    (match) => convertList(match)
-  );
-
-  // TABLES
-  if (/\|/.test(text)) {
-    text = text.replace(/((?:\|.*\|\r?\n?)+)/g, (match) => convertTable(match));
-  }
-
   return text.trim();
+}
+
+function processHeading(text) {
+  text = text.replace(/^### (.*)$/gm, "[h3]$1[/h3]");
+  text = text.replace(/^## (.*)$/gm, "[h2]$1[/h2]");
+  text = text.replace(/^# (.*)$/gm, "[h1]$1[/h1]");
+  return text;
+}
+
+function processCodeBlock(text) {
+  text = text.replace(/```([\s\S]*?)```/g, (m, code) => {
+    return "[code]" + code.trim() + "[/code]";
+  });
+  return text;
+}
+
+function processList(text) {
+  return convertList(text);
+}
+
+function processTable(text) {
+  return convertTable(text);
 }
 
 function convertList(listMarkdown) {
