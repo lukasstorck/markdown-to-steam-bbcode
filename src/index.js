@@ -24,7 +24,7 @@ function markdownToBBCode(markdownText) {
   markdownText = markdownText.replace(/^\-{3,}$/gm, "\n---\n");
   markdownText = markdownText.replace(/^\*{3,}$/gm, "\n***\n");
   markdownText = markdownText.replace(/^(```[\s\S]+?```)$/gm, "\n$1\n");
-  markdownText = markdownText.replace(/^(\|[\s\S]+?\|)$/gm, "\n$1\n");
+  markdownText = markdownText.replace(/(^\|.+\|\s*\n(?:\|.*\|\s*\n)*\|.*\|)/gm, "\n$1\n");
 
   // detect markdown blocks
   const matches = markdownText.match(/(?:[^\n]+(?:\n|$))+/gm);
