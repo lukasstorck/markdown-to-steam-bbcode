@@ -25,6 +25,8 @@ It is JavaScript based and runs in your browser, so your data never leaves your 
 
 ## Unsupported Markdown Features
 - Multi level syntax processing, currently e.g. bold text in tables is unsupported
+- spoiler tags `<details>`
+- Images `![alt](url)`
 
 
 ## Unsupported BBCode Features
