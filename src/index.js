@@ -62,7 +62,7 @@ function processMarkdownBlock(text) {
 
   // LINKS
   text = text.replace(
-    /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
+    /\[([^\]]+)\]\(([^\)]+)\)/g,
     "[url=$2]$1[/url]"
   );
 
